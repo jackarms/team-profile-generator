@@ -1,4 +1,7 @@
 const inquirer = require("inquirer");
+const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
+const Manager = require("./lib/manager");
 
 const managerQuestions = function () {
   return inquirer.prompt([
@@ -42,6 +45,17 @@ const employeeQuestions = function () {
 };
 
 managerQuestions()
-  .then((answers) => console.log(answers))
+  .then((answers) => {
+    let manager = new Manager(
+      answers.manager_name,
+      answers.manager_id,
+      answers.manager_email,
+      answers.office_number
+    );
+    return manager;
+    console.log(manager);
+  })
   .then(employeeQuestions)
   .then((projectAnswers) => console.log(projectAnswers.pick_employee));
+
+console.log(answers);
