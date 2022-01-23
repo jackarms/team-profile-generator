@@ -1,0 +1,28 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "dynamic production of employee profiles",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackarms/team-profile-generator.git"
+  },
+  "author": "John Armstrong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jackarms/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/jackarms/team-profile-generator#readme",
+  "devDependencies": {
+    "jest": "^27.4.7"
+  },
+  "dependencies": {
+    "inquirer": "^8.2.0"
+  }
+}
