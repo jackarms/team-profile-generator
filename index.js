@@ -139,6 +139,6 @@ const engineerQuestions = function () {
 
 const createCards = function () {
   for (let i = 0; i < employeesArray.length; i++) {
-    console.log([i]);
+    console.log([i].name);
   }
 };
