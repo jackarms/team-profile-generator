@@ -1,4 +1,5 @@
 const inquirer = require("inquirer");
+const fs = require("fs");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 const Manager = require("./lib/manager");
@@ -62,7 +63,7 @@ const employeeQuestions = function () {
         engineerQuestions();
       } else {
         console.log(`Your team has been created!`);
-        createCards();
+        writeFile();
       }
     });
 };
@@ -137,8 +138,53 @@ const engineerQuestions = function () {
     });
 };
 
-const createCards = function () {
+const createCards = () => {
+  let html = `<!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <link rel="stylesheet" href="style.css" />
+      <title>My Team</title>
+    </head>
+    <body>
+    <header>
+      <h1>My Team</h1>
+    </header>
+    <div class="card">
+    `;
   for (let i = 0; i < employeesArray.length; i++) {
-    console.log([i].name);
+    let name = employeesArray[i].name;
+    let title = employeesArray[i].title;
+    let id = employeesArray[i].id;
+    let email = employeesArray[i].email;
+    let school = employeesArray[i].school;
+    let github = employeesArray[i].github;
+    let officeNumber = employeesArray[i].office_number;
+    let lastQuestion;
+    if (employeesArray[i].title == "Intern") {
+      lastQuestion = `School: ${school}`;
+    } else if (employeesArray[i].title == "Engineer") {
+      lastQuestion = `GitHub: ${github}`;
+    } else if (employeesArray[i].title == "Manager") {
+      lastQuestion = `Office Number: ${officeNumber}`;
+    }
+    html += `
+  <div class="container">
+    <h2><b>${name}</b></h2>
+    <p>${title}</p>
+    <p>ID:${id}</p>
+    <p>Email: <a href= "${email}">${email}</a></p>
+    <p>${lastQuestion}</p>
+  </div>`;
   }
+  html += `</div>
+  </body>`;
+  return html;
 };
+function writeFile() {
+  fs.writeFile("./index.html", createCards(), (err) => {
+    if (err) throw err;
+  });
+}
