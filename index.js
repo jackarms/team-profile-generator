@@ -34,6 +34,7 @@ const managerQuestions = function () {
         answers.manager_name,
         answers.manager_id,
         answers.manager_email,
+        "Manager",
         answers.office_number
       );
       employeesArray.push(manager);
@@ -96,6 +97,7 @@ const internQuestions = function () {
         internAnswers.name,
         internAnswers.id,
         internAnswers.email,
+        "Intern",
         internAnswers.school
       );
       employeesArray.push(intern);
@@ -131,6 +133,7 @@ const engineerQuestions = function () {
         engineerAnswers.name,
         engineerAnswers.id,
         engineerAnswers.email,
+        "Engineer",
         engineerAnswers.github
       );
       employeesArray.push(engineer);
@@ -155,13 +158,14 @@ const createCards = () => {
     <div class="card">
     `;
   for (let i = 0; i < employeesArray.length; i++) {
+    console.log(employeesArray[i]);
     let name = employeesArray[i].name;
     let title = employeesArray[i].title;
     let id = employeesArray[i].id;
     let email = employeesArray[i].email;
     let school = employeesArray[i].school;
     let github = employeesArray[i].github;
-    let officeNumber = employeesArray[i].office_number;
+    let officeNumber = employeesArray[i].officeNumber;
     let lastQuestion;
     if (employeesArray[i].title == "Intern") {
       lastQuestion = `School: ${school}`;
@@ -174,7 +178,7 @@ const createCards = () => {
   <div class="container">
     <h2><b>${name}</b></h2>
     <p>${title}</p>
-    <p>ID:${id}</p>
+    <p>ID: ${id}</p>
     <p>Email: <a href= "${email}">${email}</a></p>
     <p>${lastQuestion}</p>
   </div>`;
